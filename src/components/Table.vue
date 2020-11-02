@@ -211,10 +211,19 @@
                 @click.stop="onCheckboxClicked(row, index, $event)"
                 class="vgt-checkbox-col"
               >
-                <input
-                  type="checkbox"
-                  :checked="row.vgtSelected"
-                />
+                <slot
+                    name="table-checkbox"
+                    :row="row"
+                    :column="column"
+                    :formattedRow="formattedRow(row)"
+                    :index="index"
+                >
+                    <input
+                        type="checkbox"
+                        :checked="row.vgtSelected"
+                    />
+                </slot>
+
               </th>
               <td
                 @click="onCellClicked(row, column, index, $event)"
