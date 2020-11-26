@@ -100,6 +100,16 @@
                 <span>{{props.column.label}}</span>
               </slot>
             </template>
+			<template slot="custom-checkbox" slot-scope="props">
+				<slot name="header-checkbox" :props="props" >
+					<input
+						type="checkbox"
+						:checked="props.allSelected"
+						:indeterminate.prop="props.allSelectedIndeterminate"
+						@change="props.toggleSelectAll"
+					/>
+				</slot>
+			</template>
           </thead>
         </table>
       </div>
@@ -150,6 +160,20 @@
                 :updateFilters="props.updateFilters"
               ></slot>
             </template>
+			<template slot="custom-checkbox" slot-scope="props">
+				<slot name="header-checkbox"
+					:allSelected="props.allSelected"
+					:allSelectedIndeterminate="props.allSelectedIndeterminate"
+					:toggleSelectAll="props.toggleSelectAll"
+				>
+					<input
+						type="checkbox"
+						:checked="props.allSelected"
+						:indeterminate.prop="props.allSelectedIndeterminate"
+						@change="props.toggleSelectAll"
+					/>
+				</slot>
+			</template>
           </thead>
 
           <!-- Table body starts here -->
